@@ -170,8 +170,9 @@ function isValueEqualsIndex(arr) {
  *    insertItem([ 1, 3, 4, 5 ], 2, 1)  => [ 1, 2, 3, 4, 5 ]
  *    insertItem([ 1, 'b', 'c'], 'x', 0) => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  throw new Error('Not implemented');
+function insertItem(arr, item, index) {
+  const newArr = arr.splice(index, 0, item);
+  return newArr;
 }
 
 /**
@@ -185,8 +186,8 @@ function insertItem(/* arr, item, index */) {
  *    getHead([ 'a', 'b', 'c', 'd'], 3) => [ 'a', 'b', 'c' ]
  *    getHead([ 'a', 'b', 'c', 'd'], 0) => []
  */
-function getHead(/* arr, n */) {
-  throw new Error('Not implemented');
+function getHead(arr, n) {
+  return arr.slice(0, n);
 }
 
 /**
@@ -399,8 +400,18 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  if (n === 0) {
+    return [];
+  }
+  let identityMatrix = new Array(n);
+  identityMatrix = identityMatrix
+    .fill(new Array(n), 0, n)
+    .map((a) => a.fill(0));
+  identityMatrix = identityMatrix.map((a, i) =>
+    a.map((b, j) => (j === i ? 1 : 0))
+  );
+  return identityMatrix;
 }
 
 /**
@@ -495,8 +506,8 @@ function findLongestIncreasingSubsequence(/* nums */) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  return arr.map((a, i) => Array(i + 1).fill(a)).flat();
 }
 
 /**
@@ -529,8 +540,20 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const names = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+  return arr.sort((a, b) => names.indexOf(a) - names.indexOf(b));
 }
 
 /**
